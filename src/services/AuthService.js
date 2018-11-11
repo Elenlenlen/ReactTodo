@@ -2,7 +2,8 @@ import BaseService from './BaseService';
 import { AsyncStorage } from 'react-native';
 
 const ENDPOINTS = {
-  LOGIN: 'api/auth/login'
+  LOGIN: 'api/auth/login',
+  REGISTER: 'api/auth/register'
 };
 
 class AuthService extends BaseService {
@@ -17,8 +18,19 @@ class AuthService extends BaseService {
 
         return { ok: true, user };
       })
-      .catch(error => {
+      .catch(() => {
         return { ok: false, data };
+      });
+  };
+
+  register = async data => {
+    return this.apiClient()
+      .post(ENDPOINTS.REGISTER, data)
+      .then(() => {
+        return { ok: true };
+      })
+      .catch(() => {
+        return { ok: false };
       });
   };
 }
