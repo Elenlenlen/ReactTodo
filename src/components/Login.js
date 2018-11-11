@@ -8,7 +8,7 @@ export default class LoginScreen extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = { email: 'e1@example.com', password: '123456' };
+    this.state = { email: '', password: '' };
   }
 
   async login() {
@@ -29,10 +29,10 @@ export default class LoginScreen extends React.Component {
           onChangeText={text => this.setState({ email: text })}
         />
         <TextInput
+          secureTextEntry={true}
           placeholder="password"
           onChangeText={text => this.setState({ password: text })}
         />
-        <Text>{this.props.navigation.getParam('name')}</Text>
         <Button title="Login" onPress={() => this.login()} />
       </View>
     );

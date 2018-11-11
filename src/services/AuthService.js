@@ -6,9 +6,6 @@ const ENDPOINTS = {
 };
 
 class AuthService extends BaseService {
-  constructor() {
-    super();
-  }
   login = async data => {
     return this.apiClient()
       .post(ENDPOINTS.LOGIN, data)
@@ -21,7 +18,6 @@ class AuthService extends BaseService {
         return { ok: true, user };
       })
       .catch(error => {
-        console.log('error\n', error);
         return { ok: false, data };
       });
   };
