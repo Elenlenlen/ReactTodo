@@ -6,15 +6,12 @@ export default class RegisterScreen extends React.Component {
   static navigationOptions = {
     title: 'Register screen'
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: ''
-    };
-  }
+  state = {
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+  };
 
   passwordConfirmed() {
     return this.state.password === this.state.password_confirmation;
@@ -46,16 +43,16 @@ export default class RegisterScreen extends React.Component {
           onChangeText={text => this.setState({ email: text })}
         />
         <TextInput
-          secureTextEntry={true}
+          secureTextEntry
           placeholder="password"
           onChangeText={text => this.setState({ password: text })}
         />
         <TextInput
-          secureTextEntry={true}
+          secureTextEntry
           placeholder="confirme password"
           onChangeText={text => this.setState({ password_confirmation: text })}
         />
-        <Button title="Register" onPress={() => this.register()} />
+        <Button title="Register" onPress={this.register} />
       </View>
     );
   }
