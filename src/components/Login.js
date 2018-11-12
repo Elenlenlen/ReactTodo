@@ -27,11 +27,11 @@ export default class LoginScreen extends React.Component {
           onChangeText={text => this.setState({ email: text })}
         />
         <TextInput
-          secureTextEntry={true}
+          secureTextEntry
           placeholder="password"
           onChangeText={text => this.setState({ password: text })}
         />
-        <Button title="Login" onPress={() => this.login()} />
+        <Button title="Login" onPress={this.login} />
       </View>
     );
   }
