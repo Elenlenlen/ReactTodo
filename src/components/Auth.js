@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Button } from 'react-native';
 import { AsyncStorage } from 'react-native';
+import authService from '../services/AuthService';
 
 export default class AuthScreen extends React.Component {
   static navigationOptions = {
@@ -8,9 +9,9 @@ export default class AuthScreen extends React.Component {
   };
 
   componentDidMount() {
-    AsyncStorage.getItem('user').then(user => {
-      if (user) {
-        this.props.navigation.navigate('Home', { user: user });
+    authService.check().then(response => {
+      if (response.ok) {
+        this.props.navigation.navigate('Home');
       }
     });
   }
