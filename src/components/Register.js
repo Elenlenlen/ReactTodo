@@ -16,14 +16,22 @@ export default class RegisterScreen extends React.Component {
     };
   }
 
+  passwordConfirmed() {
+    return this.state.password === this.state.password_confirmation;
+  }
+
   async register() {
-    authService.register(this.state).then(response => {
-      if (response.ok) {
-        this.props.navigation.navigate('Login');
-      } else {
-        alert('Invalid credentials!');
-      }
-    });
+    if (this.passwordConfirmed()) {
+      authService.register(this.state).then(response => {
+        if (response.ok) {
+          this.props.navigation.navigate('Login');
+        } else {
+          alert('Invalid credentials!');
+        }
+      });
+    } else {
+      alert('Wrong password confirmation!');
+    }
   }
 
   render() {
