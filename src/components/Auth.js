@@ -8,7 +8,10 @@ export default class AuthScreen extends React.Component {
   render() {
     return (
       <View>
-        <Button title="Register" onPress={() => {}} />
+        <Button
+          title="Register"
+          onPress={() => this.props.navigation.navigate('Register')}
+        />
         <Button
           title="Login"
           onPress={() => this.props.navigation.navigate('Login')}
