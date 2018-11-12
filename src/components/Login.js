@@ -9,7 +9,7 @@ export default class LoginScreen extends React.Component {
 
   state = { email: '', password: '' };
 
-  async login() {
+  login = () => {
     authService.login(this.state).then(response => {
       if (response.ok) {
         this.props.navigation.navigate('Home', { user: response.user });
@@ -17,7 +17,7 @@ export default class LoginScreen extends React.Component {
         alert('Wrong credentials!');
       }
     });
-  }
+  };
 
   render() {
     return (

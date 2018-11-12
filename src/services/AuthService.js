@@ -7,18 +7,23 @@ const ENDPOINTS = {
 };
 
 class AuthService extends BaseService {
-  login = async data => {
+  login = data => {
     return this.apiClient()
       .post(ENDPOINTS.LOGIN, data)
       .then(response => {
+        const user = response.data.user;
+        const token = response.data.access_token;
+
         this.api.attachHeaders({
-          Authorization: `Bearer ${response.data.access_token}`
+          Authorization: `Bearer ${token}`
         });
-        var user = store(response.data.access_token);
+        AsyncStorage.setItem('token', token);
+        AsyncStorage.setItem('user', JSON.stringify(user));
 
         return { ok: true, user };
       })
-      .catch(() => {
+      .catch(error => {
+        alert(error);
         return { ok: false, data };
       });
   };
@@ -33,17 +38,19 @@ class AuthService extends BaseService {
         return { ok: false };
       });
   };
-}
 
-function store(token) {
-  var base64Url = token.split('.')[1];
-  var base64 = base64Url.replace('-', '+').replace('_', '/');
-  var user = JSON.parse(window.atob(base64)).user;
-
-  AsyncStorage.setItem('token', token);
-  AsyncStorage.setItem('user', JSON.stringify(user));
-
-  return user;
+  logout = async () => {
+    return new Promise((resolve, reject) => {
+      try {
+        AsyncStorage.removeItem('user');
+        AsyncStorage.removeItem('token');
+      } catch (error) {
+        reject(error);
+      }
+      this.api.removeHeaders(['Authorization']);
+      resolve({ ok: true });
+    });
+  };
 }
 
 const authService = new AuthService();
