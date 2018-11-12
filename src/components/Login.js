@@ -6,10 +6,8 @@ export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Login screen'
   };
-  constructor(props) {
-    super(props);
-    this.state = { email: '', password: '' };
-  }
+
+  state = { email: '', password: '' };
 
   async login() {
     authService.login(this.state).then(response => {
