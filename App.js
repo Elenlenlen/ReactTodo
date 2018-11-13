@@ -11,7 +11,7 @@ const RootStack = createStackNavigator(
     Login: { screen: LoginScreen },
     Home: { screen: HomeScreen },
     Register: { screen: RegisterScreen },
-    Card: { screen: CardScreen }
+    CardOverview: { screen: CardScreen }
   },
   {
     initialRouteName: 'Auth'

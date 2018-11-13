@@ -45,6 +45,12 @@ export default class HomeScreen extends React.Component {
       .catch(() => {});
   };
 
+  addCard = () => {
+    this.props.navigation.navigate('CardOverview', {
+      value: { description: '', priority: false, done: false }
+    });
+  };
+
   render() {
     return (
       <Swiper style={styles.wrapper} showsButtons>
@@ -74,6 +80,7 @@ export default class HomeScreen extends React.Component {
         </View>
         <View style={styles}>
           <Button title="Logout" onPress={this.logout} />
+          <Button title="Add Card" onPress={this.addCard} />
         </View>
       </Swiper>
     );

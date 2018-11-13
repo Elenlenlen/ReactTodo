@@ -8,8 +8,12 @@ export default class ListContainer extends React.Component {
   };
   state = { cards: [], isLoading: true };
 
-  renderCards = card => {
-    return <Card value={card.item} navigation={this.props.navigation} />;
+  keyExtractor = item => item.id.toString();
+
+  renderCards = (card, index) => {
+    return (
+      <Card value={card.item} navigation={this.props.navigation} key={index} />
+    );
   };
 
   render() {
@@ -20,6 +24,7 @@ export default class ListContainer extends React.Component {
           data={this.props.cards}
           renderItem={this.renderCards}
           extraData={this.props.loader}
+          keyExtractor={this.keyExtractor}
         />
       </View>
     );
