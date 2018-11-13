@@ -15,6 +15,21 @@ class CardService extends BaseService {
         return { ok: false };
       });
   };
+
+  addCard = async card => {
+    if (card.description) {
+      return this.apiClient()
+        .post(ENDPOINTS.CARDS, card)
+        .then(response => {
+          console.log(response.data);
+          return { ok: true, newCard: response.data };
+        })
+        .catch(error => {
+          console.log(error);
+          return { ok: false };
+        });
+    } else return { ok: false };
+  };
 }
 
 const cardService = new CardService();

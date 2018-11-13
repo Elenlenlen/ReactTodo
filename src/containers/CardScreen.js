@@ -5,18 +5,28 @@ export default class CardScreen extends React.Component {
   static navigationOptions = {
     title: 'Card'
   };
-  state = { card: this.props.navigation.getParam('value') };
+  card = this.props.navigation.getParam('card');
 
-  doneToString = this.state.card.done ? 'Done' : 'To do';
+  doneToString = this.card.done ? 'Done' : 'To do';
 
-  priorityToString = this.state.card.priority ? 'Important' : 'Normal';
+  priorityToString = this.card.priority ? 'Important' : 'Normal';
 
   render() {
+    console.log(this.card);
     return (
       <View>
-        <Text>{this.state.card.description}</Text>
+        <Text>{this.card.description}</Text>
         <Text>{this.doneToString}</Text>
         <Text>{this.priorityToString}</Text>
+        <Button
+          title="Edit"
+          onPress={() =>
+            this.props.navigation.navigate('EditCard', {
+              card: this.card,
+              edit: true
+            })
+          }
+        />
       </View>
     );
   }

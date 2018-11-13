@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 const Card = ({ value, navigation }) => {
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('CardOverview', { value })}
+      onPress={() => navigation.navigate('CardOverview', { card: value })}
       style={styles.container}
     >
       <View>

@@ -46,8 +46,9 @@ export default class HomeScreen extends React.Component {
   };
 
   addCard = () => {
-    this.props.navigation.navigate('CardOverview', {
-      value: { description: '', priority: false, done: false }
+    this.props.navigation.navigate('EditCard', {
+      card: { description: '', priority: false, done: false },
+      edit: false
     });
   };
 
