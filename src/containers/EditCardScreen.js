@@ -18,7 +18,16 @@ export default class CardScreen extends React.Component {
 
   buttonSubmit = () => {
     if (this.props.navigation.getParam('edit')) {
-      //service.edit
+      console.log(this.state);
+      cardService.editCard(this.state).then(response => {
+        if (response.ok) {
+          this.props.navigation.pop();
+          this.props.navigation.pop();
+          this.props.navigation.navigate('Home');
+        } else {
+          alert("Description can't be empty!");
+        }
+      });
     } else {
       cardService.addCard(this.state).then(response => {
         if (response.ok) {

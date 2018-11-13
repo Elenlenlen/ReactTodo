@@ -21,7 +21,21 @@ class CardService extends BaseService {
       return this.apiClient()
         .post(ENDPOINTS.CARDS, card)
         .then(response => {
-          console.log(response.data);
+          return { ok: true, newCard: response.data };
+        })
+        .catch(error => {
+          return { ok: false };
+        });
+    } else return { ok: false };
+  };
+
+  editCard = async card => {
+    console.log(card);
+    if (card.description) {
+      return this.apiClient()
+        .put(ENDPOINTS.CARDS + '/' + card.id, card)
+        .then(response => {
+          console.log(response);
           return { ok: true, newCard: response.data };
         })
         .catch(error => {

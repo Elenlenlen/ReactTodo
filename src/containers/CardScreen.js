@@ -12,7 +12,6 @@ export default class CardScreen extends React.Component {
   priorityToString = this.card.priority ? 'Important' : 'Normal';
 
   render() {
-    console.log(this.card);
     return (
       <View>
         <Text>{this.card.description}</Text>

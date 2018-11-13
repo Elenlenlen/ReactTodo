@@ -3,7 +3,7 @@ import { View, Button, StyleSheet, Text } from 'react-native';
 import cardService from '../services/CardService';
 import authService from '../services/AuthService';
 import Swiper from 'react-native-swiper';
-import List from './List';
+import List from './CardList';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
