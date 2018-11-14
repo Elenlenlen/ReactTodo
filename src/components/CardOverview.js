@@ -7,14 +7,6 @@ export default class CardScreen extends React.Component {
     title: 'Card'
   };
 
-  constructor(props) {
-    super(props);
-    card = props.navigation.getParam('card');
-    this.state = {
-      card
-    };
-  }
-
   state = { card: this.props.navigation.getParam('card') };
 
   delete = () => {
