@@ -4,8 +4,8 @@ import LoginScreen from './src/components/Login';
 import HomeScreen from './src/containers/HomeScreen';
 import AuthScreen from './src/components/Auth';
 import RegisterScreen from './src/components/Register';
-import CardScreen from './src/containers/CardScreen';
-import EditCardScreen from './src/containers/EditCardScreen';
+import CardScreen from './src/components/CardOverview';
+import EditCardScreen from './src/components/EditCard';
 
 const RootStack = createStackNavigator(
   {

@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, Button, StyleSheet, Text, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import Card from '../components/Card';
 
-export default class ListContainer extends React.Component {
+export default class CardList extends React.Component {
   static navigationOptions = {
     title: 'List screen hello'
   };
-  state = { cards: [], isLoading: true };
-
   keyExtractor = item => item.id.toString();
 
   renderCards = (card, index) => {

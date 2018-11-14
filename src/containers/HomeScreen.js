@@ -3,18 +3,19 @@ import { View, Button, StyleSheet, Text } from 'react-native';
 import cardService from '../services/CardService';
 import authService from '../services/AuthService';
 import Swiper from 'react-native-swiper';
-import List from './CardList';
+import CardList from './CardList';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home screen hello'
   };
-  state = { cards: [], isLoading: true };
+
+  state = { cards: [] };
 
   componentDidMount() {
     cardService.getCards().then(response => {
       if (response.ok) {
-        this.setState({ cards: response.cards, isLoading: false });
+        this.setState({ cards: response.cards });
       }
     });
   }
@@ -46,40 +47,34 @@ export default class HomeScreen extends React.Component {
   };
 
   addCard = () => {
-    this.props.navigation.navigate('EditCard', {
-      card: { description: '', priority: false, done: false },
-      edit: false
-    });
+    this.props.navigation.navigate('EditCard');
   };
 
   render() {
     return (
       <Swiper style={styles.wrapper} showsButtons>
-        <View>
-          <List
+        <View style={styles.slide1}>
+          <CardList
             cards={this.getDoneCards()}
             title={'Done'}
-            loader={this.state.isLoading}
             navigation={this.props.navigation}
           />
         </View>
-        <View>
-          <List
+        <View style={styles.slide1}>
+          <CardList
             cards={this.getTodoCards()}
             title={'To Do'}
-            loader={this.state.isLoading}
             navigation={this.props.navigation}
           />
         </View>
-        <View>
-          <List
+        <View style={styles.slide1}>
+          <CardList
             cards={this.getPriorityCards()}
             title={'High Priority'}
-            loader={this.state.isLoading}
             navigation={this.props.navigation}
           />
         </View>
-        <View style={styles}>
+        <View style={styles.slide1}>
           <Button title="Logout" onPress={this.logout} />
           <Button title="Add Card" onPress={this.addCard} />
         </View>
@@ -95,18 +90,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB'
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5'
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
   },
   text: {
     color: '#fff',
