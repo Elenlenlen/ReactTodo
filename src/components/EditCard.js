@@ -31,19 +31,6 @@ export default class EditCardScreen extends React.Component {
       };
     }
   }
-  delete = () => {
-    cardService.deleteCard(this.state.id).then(response => {
-      if (response.ok) {
-        this.props.navigation.pop();
-        this.props.navigation.pop();
-        this.props.navigation.pop();
-
-        this.props.navigation.navigate('Home');
-      } else {
-        alert("Description can't be empty!");
-      }
-    });
-  };
 
   buttonSubmit = () => {
     card = {
@@ -59,7 +46,6 @@ export default class EditCardScreen extends React.Component {
           this.props.navigation.pop();
           this.props.navigation.pop();
           this.props.navigation.pop();
-
           this.props.navigation.navigate('Home');
         } else {
           alert("Description can't be empty!");
@@ -77,6 +63,7 @@ export default class EditCardScreen extends React.Component {
       });
     }
   };
+
   render() {
     return (
       <View>

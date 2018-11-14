@@ -11,14 +11,10 @@ export default class CardScreen extends React.Component {
 
   delete = () => {
     cardService.deleteCard(this.state.card).then(response => {
-      if (response.ok) {
-        this.props.navigation.pop();
-        this.props.navigation.pop();
-        this.props.navigation.pop();
-        this.props.navigation.navigate('Home');
-      } else {
-        alert("Description can't be empty!");
-      }
+      this.props.navigation.pop();
+      this.props.navigation.pop();
+      this.props.navigation.pop();
+      this.props.navigation.navigate('Home');
     });
   };
 
@@ -26,8 +22,8 @@ export default class CardScreen extends React.Component {
     return (
       <View>
         <Text>{this.state.card.description}</Text>
-        <Text>{this.state.doneToString}</Text>
-        <Text>{this.state.priorityToString}</Text>
+        <Text>{this.state.card.priority ? 'High Priority' : 'Normal'}</Text>
+        <Text>{this.state.card.done ? 'Done' : 'To do'}</Text>
         <Button
           title="Edit"
           onPress={() =>
