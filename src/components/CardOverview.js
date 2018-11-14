@@ -9,23 +9,10 @@ export default class CardScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    if (props.navigation.getParam('card')) {
-      card = props.navigation.getParam('card');
-      this.state = {
-        card
-      };
-    } else {
-      this.state = {
-        card: {
-          id: 0,
-          user_id: 0,
-          description: '',
-          priority: false,
-          done: false,
-          edit: false
-        }
-      };
-    }
+    card = props.navigation.getParam('card');
+    this.state = {
+      card
+    };
   }
 
   state = { card: this.props.navigation.getParam('card') };
