@@ -51,6 +51,19 @@ class AuthService extends BaseService {
       resolve({ ok: true });
     });
   };
+
+  check = async () => {
+    return AsyncStorage.getItem('token').then(token => {
+      if (token) {
+        this.api.attachHeaders({
+          Authorization: `Bearer ${token}`
+        });
+        return { ok: true };
+      } else {
+        return { ok: false };
+      }
+    });
+  };
 }
 
 const authService = new AuthService();
